@@ -88,7 +88,7 @@
     <footer class="text-center py-3 mt-4">
         © 2026 pauling adventure | dibuat dengan ❤️ oleh zhio
     </footer>
-
+ @stack('scripts')
 </div>
 
 </body>
