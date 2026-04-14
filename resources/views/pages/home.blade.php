@@ -1,11 +1,35 @@
-@extends ("master")
-<section class="hero d-flex align-items-center text-white">
-    <div class="container text-center">
-        <h1 class="display-4 fw-bold">Jelajahi Dunia Bersama Kami</h1>
-        <p class="lead">Temukan destinasi impianmu sekarang</p>
-        <a href="#destinasi" class="btn btn-primary btn-lg">Lihat Destinasi</a>
-    </div>
-</section>
+@extends('master')
+
 @section('content')
-<h1>home</h1>
+
+<!-- POPULAR DESTINATION -->
+<div class="glass mt-4">
+    <h3 class="mb-4">🌍 Popular Destinations</h3>
+
+    <div class="row">
+        @foreach($destinations as $d)
+        <div class="col-md-4 mb-3">
+            <div class="card border-0 shadow">
+
+                <img src="https://source.unsplash.com/400x300/?travel" 
+                     class="card-img-top">
+
+                <div class="card-body">
+                    <h5>{{ $d->name }}</h5>
+                    <p class="text-muted">{{ $d->location }}</p>
+
+                    <p>Rp {{ number_format($d->ticket_price,0,',','.') }}</p>
+
+                    <a href="/detaildestinasi/{{ $d->id }}" 
+                       class="btn btn-primary btn-sm">
+                        View Detail
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
 @endsection
