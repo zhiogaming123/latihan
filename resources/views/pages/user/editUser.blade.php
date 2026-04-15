@@ -5,7 +5,7 @@
 
     <h3 class="fw-bold mb-4">✏️ Edit User</h3>
 
-    <form action="/user/{{$user->id}}" method="POST">
+    <form action="{{route('user.update')}}" method="POST">
         @csrf
         @method('PUT')
 

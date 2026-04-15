@@ -47,7 +47,7 @@
         <td>
             <div class="d-flex gap-2 justify-content-center">
 
-                <form action="/user/{{$d->id}}" method="post">
+                <form action="{{route('user.delete',$d->id)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm"
@@ -56,10 +56,10 @@
                     </button>
                 </form>
 
-                <a href="/user/{{$d->id}}/edit" 
-                   class="btn btn-warning btn-sm">
-                    Edit
-                </a>
+                <a href="{{route('user.edit',$d->id)}}" 
+                               class="btn btn-warning btn-sm btn-custom">
+                                Edit
+                            </a>
             </div>
         </td>
     </tr>

@@ -17,13 +17,13 @@ class UserController extends Controller
         $users = User::orderBy('id')->paginate(5);
     }
 
-    return view('pages.indexUser', compact('users'));
+    return view('pages.user.indexUser', compact('users'));
 }
 
 
     public function create()
     {
-        return view('pages.createUser');
+        return view('pages.user.createUser');
     }
 
     public function store(Request $request)
@@ -46,8 +46,10 @@ class UserController extends Controller
     public function edit($id)
 {
     $user = User::findOrFail($id);
-    return view('pages.editUser', compact('user'));
+    return view('pages.user.editUser', compact('user'));
+    
 }
+
 
 public function update(Request $request, $id)
 {
@@ -57,6 +59,9 @@ public function update(Request $request, $id)
     return redirect('/users')->with('success', 'user updated successfully.');
 }
 
-
-
+public function show($id)
+{
+    $user = User::findOrFail($id); // ✅ kalau tidak ada → otomatis 404
+    return view('pages.user.showUser', compact('user'));
+}
 }

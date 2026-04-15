@@ -60,6 +60,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="attraction">Attraction</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="/packages">Packages</a>
                     </li>
 
@@ -70,6 +74,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>
                     </li>
+                    
 
                     <!-- DROPDOWN -->
                     <li class="nav-item dropdown">

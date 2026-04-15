@@ -20,7 +20,7 @@
 
                     <p>Rp {{ number_format($d->ticket_price,0,',','.') }}</p>
 
-                    <a href="/detaildestinasi/{{ $d->id }}" 
+                    <a href="{{{ route("destinations.show",$d->id) }}}" 
                        class="btn btn-primary btn-sm">
                         View Detail
                     </a>

@@ -5,7 +5,7 @@
 
     <h3 class="fw-bold mb-4">✏️ Edit Destination</h3>
 
-    <form action="/destination/{{$destination->id}}" method="POST">
+    <form action="{{route('destinations.update',$destination->id)}}" method="POST">
         @csrf
         @method('PUT')
 
