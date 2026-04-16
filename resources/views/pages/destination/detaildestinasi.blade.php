@@ -9,12 +9,13 @@
 
             <div class="card border-0"> 
 
+        
                 <!-- GAMBAR -->
-                <div class="position-relative">
-                    <img src="https://www.wandernesia.com/wp-content/uploads/2020/01/Tugu-Iora-@soalpadang-768x576.jpg"
-                         class="w-100"
-                         style="height:300px; object-fit:cover;">
-                </div>
+<div class="position-relative">
+    <img src="{{ $destination->image ? asset('images/destinations/' . $destination->image) : 'https://via.placeholder.com/800x400' }}"
+         class="w-100"
+         style="height:300px; object-fit:cover;">
+</div>
 
                 <!-- ISI -->
                 <div class="card-body p-4">

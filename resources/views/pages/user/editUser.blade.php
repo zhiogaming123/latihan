@@ -1,6 +1,15 @@
 @extends('master')
 
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul class="mb-0">
+        @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif 
 <div class="glass">
 
     <h3 class="fw-bold mb-4">✏️ Edit User</h3>
@@ -12,7 +21,10 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label>Name</label>
-                <input type="text" name="name" class="form-control"
+                <input type="text" name="name" class="form-control" @error('name') is-invalid @enderror" value="{{old('name')}}" required>
+                @error('name')
+                <div class="invalid-feedback">{{message}}</div>    
+                @enderror
                     value="{{ $user->name }}" required>
             </div>
 

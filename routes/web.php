@@ -5,6 +5,7 @@ use App\Models\Destination;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AttractionController;
+use App\Http\Controllers\PaulingController;
 
 Route::get('/', function () {
     $destinations = Destination::all();
@@ -72,6 +73,15 @@ Route::delete('/attraction/{id}/', [attractionController::class, 'delete'])->nam
 Route::get("/{id}/show", [attractionController::class, 'show'])->name('show');
 });
 
+Route::prefix('pauling')->name('pauling.')->group(function(){
+Route::get("/",[PaulingController::class, 'index'])->name('index');
+Route::get("/create", [PaulingController::class, 'create'])->name('create');
+Route::post("/store", [PaulingController::class, 'store' ])->name('store');
+Route::get('/{id}/edit', [PaulingController::class, 'edit'])->name('edit');
+Route::put('/{id}/update', [PaulingController::class, 'update'])->name('update');
+Route::delete('/pauling/{id}/', [PaulingController::class, 'delete'])->name('delete');
+Route::get("/{id}/show", [PaulingController::class, 'show'])->name('show');
+});
 
 Route::get('/packages', function () {
     return view('pages.menu.packages');

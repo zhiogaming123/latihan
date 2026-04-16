@@ -1,21 +1,74 @@
 @extends('master')
 
 @section('content')
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul class="mb-0">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <div class="container mt-4">
-    <form action="{{route('attraction.store')}}" method="post" class="form-floating">
+
+    <form action="{{ route('attraction.store') }}" method="post">
         @csrf
 
-        <div class="form-floating mb-3">    
-            <input type="text" class="form-control" name="name" placeholder="Asia Heritage">
-            <label>Nama </label>
+        {{-- DESTINATION --}}
+        <div class="mb-3">
+            <label class="form-label">Destination</label>
+
+            <select name="destination_id"
+                    class="form-control @error('destination_id') is-invalid @enderror"
+                    required>
+
+                <option value="">Select Destination</option>
+
+                @foreach($destinations as $destination)
+                    <option value="{{ $destination->id }}"
+                        {{ old('destination_id') == $destination->id ? 'selected' : '' }}>
+                        {{ $destination->name }}
+                    </option>
+                @endforeach
+
+            </select>
+
+            @error('destination_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="form-floating mb-3">
-            <textarea name="description" class="form-control" style="height: 100px"></textarea>
+        {{-- NAME --}}
+        <div class="mb-3">
+            <label>Nama</label>
+            <input type="text"
+                   class="form-control @error('name') is-invalid @enderror"
+                   name="name"
+                   value="{{ old('name') }}"
+                   required>
+
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        {{-- DESCRIPTION --}}
+        <div class="mb-3">
             <label>Deskripsi</label>
+            <textarea name="description"
+                      class="form-control"
+                      rows="4">{{ old('description') }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>   
-</div>   
-@endsection        
+        <button type="submit" class="btn btn-primary">
+            Submit
+        </button>
+
+    </form>
+
+</div>
+
+@endsection

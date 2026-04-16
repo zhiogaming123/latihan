@@ -40,42 +40,53 @@
                 </tr>   
             </thead>
             <tbody>
-                @foreach($destination as $d)
-                <tr>
-                    <td>
-                        <a href="{{ route('destinations.show', $d->id) }}" class="text-warning fw-bold">
-                            {{ $d->id }}
-                        </a>
-                    </td>
-                    <td>{{ $d->name }}</td>
-                    <td>{{ $d->description }}</td>
-                    <td>{{ $d->location }}</td>
-                    <td>Rp {{ number_format($d->ticket_price,0,',','.') }}</td>
-                    <td>{{ $d->working_hours }}</td>
-                    <td>{{ $d->working_days }}</td>
-                    <td>
-                        <div class="d-flex gap-2 justify-content-center">
-                            {{-- DELETE --}}
-                            <form action="{{route('destinations.delete',$d->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm btn-custom"
-                                    onclick="return confirm('Yakin hapus {{$d->name}}?')">
-                                    Delete
-                                </button>
-                            </form>
+    @foreach($destination as $d)
+    <tr>
 
-                            {{-- EDIT --}}
-                            <a href="{{route('destinations.edit',$d->id)}}" 
-                               class="btn btn-warning btn-sm btn-custom">
-                                Edit
-                            </a>
-                        
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
+        <td>
+            <a href="{{ route('destinations.show', $d->id) }}" class="text-warning fw-bold">
+                {{ $d->id }}
+            </a>
+        </td>
+
+        <td>
+            <img src="{{ $d->image ? asset('images/destinations/' . $d->image) : 'https://via.placeholder.com/100' }}"
+             width="80"
+             height="60"
+            style="object-fit:cover; border-radius:8px; margin-right:10px;">
+
+            {{ $d->name }}
+        </td>
+
+        <td>{{ $d->description }}</td>
+        <td>{{ $d->location }}</td>
+        <td>Rp {{ number_format($d->ticket_price,0,',','.') }}</td>
+        <td>{{ $d->working_hours }}</td>
+        <td>{{ $d->working_days }}</td>
+
+        <td>
+            <div class="d-flex gap-2 justify-content-center">
+
+                <form action="{{route('destinations.delete',$d->id)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm btn-custom"
+                        onclick="return confirm('Yakin hapus {{$d->name}}?')">
+                        Delete
+                    </button>
+                </form>
+
+                <a href="{{route('destinations.edit',$d->id)}}" 
+                   class="btn btn-warning btn-sm btn-custom">
+                    Edit
+                </a>
+
+            </div>
+        </td>
+
+    </tr>
+    @endforeach
+</tbody>
         </table>
     </div>
     <div class="mt-3 d-flex justify-content-center">

@@ -28,7 +28,15 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        user::create($request->all());
+       $validated = $request->validated(
+            [
+                'name' => 'required|string|max:255',
+                'email' => 'required',
+                'password'=>'required',
+
+            ]
+        );
+        \App\Models\Attraction::create($validated);
         return redirect('/users')->with('success', 'user created successfully.');
     }
 
@@ -53,8 +61,14 @@ class UserController extends Controller
 
 public function update(Request $request, $id)
 {
-    $user = user::findOrFail($id);
-    $user->update($request->all());
+   $validated = $request->validate([
+            'name' =>'required',
+            'email'=>'required',
+            'password'=>'required',
+        ]);
+
+        $Attraction = \App\Models\Attraction::findOrFail($id);
+        $Attraction->update($validated);
 
     return redirect('/users')->with('success', 'user updated successfully.');
 }

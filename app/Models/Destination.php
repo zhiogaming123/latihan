@@ -8,11 +8,18 @@ class Destination extends Model
 {
     //
     protected $fillable = [
-        'name',
-        'description',
-        'location',
-        'working_days',
-        'working_hours',
-        'ticket_price',
-    ];
+    'name',
+    'description',
+    'location',
+    'ticket_price',
+    'working_hours',
+    'working_days',
+    'image',
+];
+
+public function attractions()
+{
+    return $this->hasMany(Attraction::class);
+}
+
 }
