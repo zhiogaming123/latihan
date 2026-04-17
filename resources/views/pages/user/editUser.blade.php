@@ -14,18 +14,18 @@
 
     <h3 class="fw-bold mb-4">✏️ Edit User</h3>
 
-    <form action="{{route('user.update')}}" method="POST">
+    <form action="{{ route('user.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label>Name</label>
-                <input type="text" name="name" class="form-control" @error('name') is-invalid @enderror" value="{{old('name')}}" required>
+                <input type="text" name="name" class="form-control" @error('name') is-invalid @enderror" value="{{$user->name}}" required>
                 @error('name')
                 <div class="invalid-feedback">{{message}}</div>    
                 @enderror
-                    value="{{ $user->name }}" required>
+                    
             </div>
 
             <div class="col-md-6 mb-3">
