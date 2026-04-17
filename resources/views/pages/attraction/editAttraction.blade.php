@@ -69,8 +69,8 @@
 
         {{-- BUTTON --}}
         <div class="d-flex justify-content-between mt-4">
-            <a href="/attraction" class="btn btn-secondary btn-custom">← Back</a>
-            <button type="submit" class="btn btn-success btn-custom">
+            <a href="/attraction" class="btn-modern btn-custom">← Back</a>
+            <button type="submit" class="btn-modern btn-custom">
                 Update Attraction
             </button>
         </div>

@@ -41,13 +41,13 @@ tbody tr:hover {
 }
 
 /* Button modern */
-.btn-custom {
+.btn-modern {
     border-radius: 12px;
     padding: 6px 16px;
     transition: all 0.3s ease;
 }
 
-.btn-custom:hover {
+.btn-modern:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }

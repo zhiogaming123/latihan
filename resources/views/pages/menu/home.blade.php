@@ -11,8 +11,9 @@
         <div class="col-md-4 mb-3">
             <div class="card border-0 shadow">
 
-                <img src="https://source.unsplash.com/400x300/?travel" 
-                     class="card-img-top">
+                <img src="{{ asset('images/destinations/' . $d->image) }}" 
+     class="card-img-top"
+     style="height:200px; object-fit:cover;">
 
                 <div class="card-body">
                     <h5>{{ $d->name }}</h5>

@@ -63,7 +63,7 @@
                       rows="4">{{ old('description') }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn-modern w-100 mt-4">
             Submit
         </button>
 

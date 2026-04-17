@@ -65,24 +65,32 @@
         <td>{{ $d->working_days }}</td>
 
         <td>
-            <div class="d-flex gap-2 justify-content-center">
+    <div class="d-flex gap-2 justify-content-center">
 
-                <form action="{{route('destinations.delete',$d->id)}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm btn-custom"
-                        onclick="return confirm('Yakin hapus {{$d->name}}?')">
-                        Delete
-                    </button>
-                </form>
+        {{-- DETAIL --}}
+        <a href="{{ route('destinations.show', $d->id) }}" 
+           class="btn btn-info btn-sm btn-custom">
+            Detail
+        </a>
 
-                <a href="{{route('destinations.edit',$d->id)}}" 
-                   class="btn btn-warning btn-sm btn-custom">
-                    Edit
-                </a>
+        {{-- EDIT --}}
+        <a href="{{route('destinations.edit',$d->id)}}" 
+           class="btn btn-warning btn-sm btn-custom">
+            Edit
+        </a>
 
-            </div>
-        </td>
+        {{-- DELETE --}}
+        <form action="{{route('destinations.delete',$d->id)}}" method="post">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger btn-sm btn-custom"
+                onclick="return confirm('Yakin hapus {{$d->name}}?')">
+                Delete
+            </button>
+        </form>
+
+    </div>
+</td>
 
     </tr>
     @endforeach

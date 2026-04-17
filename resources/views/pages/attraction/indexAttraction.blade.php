@@ -16,10 +16,10 @@
 
     <form method="GET" action="{{route('attraction.index')}}" class="d-flex gap-2">
         <input type="text" name="search" class="form-control" placeholder="Search...">
-        <button class="btn btn-secondary">Search</button>
+        <button class="btn-modern">Search</button>
     </form>
 
-    <a href="/attraction/create" class="btn btn-success">
+    <a href="/attraction/create" class="btn-modern">
         Add Attraction
     </a>
 
@@ -31,6 +31,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Destination</th>
                     <th>Description</th>
                     <th>Actions</th>
                 </tr>   
@@ -44,6 +45,7 @@
                         </a>
                     </td>
                     <td>{{ $d->name }}</td>
+                    <td>{{$d->destination->name}}</td>
                     <td>{{ $d->description }}</td>
                     <td>
                         <div class="d-flex gap-2 justify-content-center">
@@ -51,7 +53,7 @@
                             <form action="{{route('attraction.delete',$d->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger btn-sm btn-custom"
+                                <button class="btn-modern btn-sm"
                                     onclick="return confirm('Yakin hapus {{$d->name}}?')">
                                     Delete
                                 </button>
@@ -59,7 +61,7 @@
 
                             {{-- EDIT --}}
                             <a href="{{route('attraction.edit',$d->id)}}" 
-                               class="btn btn-warning btn-sm btn-custom">
+                               class="btn-modern btn-sm">
                                 Edit
                             </a>
                         

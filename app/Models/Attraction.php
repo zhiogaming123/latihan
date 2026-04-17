@@ -9,11 +9,17 @@ class Attraction extends Model
     //
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'destination_id'
     ];
     
     public function destination()
     {
         return $this->belongsTo(Destination::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

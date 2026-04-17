@@ -28,16 +28,15 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-       $validated = $request->validated(
+       $validated = $request->validate(
             [
                 'name' => 'required|string|max:255',
                 'email' => 'required',
                 'password'=>'required',
 
-            ]
-        );
-        \App\Models\Attraction::create($validated);
-        return redirect('/users')->with('success', 'user created successfully.');
+            ]);
+        \App\Models\user::create($validated);
+        return redirect()->route('user.index')->with('success', 'users created successfully.');
     }
 
     public function delete($id)
@@ -61,16 +60,17 @@ class UserController extends Controller
 
 public function update(Request $request, $id)
 {
+    
    $validated = $request->validate([
             'name' =>'required',
             'email'=>'required',
             'password'=>'required',
         ]);
 
-        $Attraction = \App\Models\Attraction::findOrFail($id);
+        $Attraction = \App\Models\User::findOrFail($id);
         $Attraction->update($validated);
 
-    return redirect('/users')->with('success', 'user updated successfully.');
+    return redirect()->route('user.index')->with('success', 'user updated successfully.');
 }
 
 public function show($id)

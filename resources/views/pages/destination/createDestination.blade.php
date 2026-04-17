@@ -13,7 +13,6 @@
 <div class="container mt-4">
    <form action="{{ route('destinations.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         <div class="form-floating mb-3">    
             <input type="text" class="form-control" name="name" placeholder="Asia Heritage" @error('name') is-invalid @enderror" value="{{old('name')}}" required>
             @error('name')
@@ -54,7 +53,7 @@
     <input type="file" name="image" class="form-control">
 </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn-modern">Submit</button>
     </form>
 </div>
 @endsection

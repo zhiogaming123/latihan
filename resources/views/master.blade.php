@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pauling Adventure</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Font -->
@@ -14,97 +14,192 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center/cover;
+            margin: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            overflow-x: hidden;
         }
 
-        .overlay {
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 240px;
+            height: 100%;
             background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .sidebar .nav-link {
+            color: white;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        .sidebar .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+
+        /* CONTENT */
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        /* MOBILE */
+        @media(max-width:768px){
+            .sidebar {
+                left: -260px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        /* TOGGLE */
+        .toggle-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+            background: #0072ff;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        /* BACKGROUND */
+        .overlay {
+            background: rgba(0,0,0,0.5);
             min-height: 100vh;
         }
 
-        .glass {
+        /* BUBBLE */
+        .bubbles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .bubbles span {
+            position: absolute;
+            bottom: -150px;
+            width: 20px;
+            height: 20px;
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            animation: rise 15s linear infinite;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 0.5; }
+            100% { transform: translateY(-1000px); opacity: 0; }
+        }
+
+        /* GLASS */
+        .glass {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(15px);
             border-radius: 15px;
             padding: 20px;
             color: white;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .navbar {
-            background: rgba(0,0,0,0.7) !important;
+        /* BUTTON */
+        .btn-modern {
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            border: none;
+            padding: 8px 16px;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 0 #0056b3;
+        }
+
+        .btn-modern:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #0056b3;
+        }
+
+        footer {
+            background: rgba(0,0,0,0.5);
         }
     </style>
 </head>
 
 <body>
-<div class="overlay">
 
-    <!-- ✅ NAVBAR FIX -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold">🌴 Pauling Adventure</a>
+<!-- TOGGLE -->
+<button class="toggle-btn d-md-none" onclick="toggleSidebar()">☰</button>
 
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
 
-            <div class="collapse navbar-collapse" id="nav">
-                <ul class="navbar-nav ms-auto">
+    <h5 class="text-white fw-bold mb-3">🌴 Pauling Adventure</h5>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
+    <ul class="navbar-nav">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/destinations">Destinations</a>
-                    </li>
+        <li><a class="nav-link" href="/">Home</a></li>
+        <li><a class="nav-link" href="/destinations">Destinations</a></li>
+        <li><a class="nav-link" href="attraction">Attraction</a></li>
+        <li><a class="nav-link" href="pauling">Pauling</a></li>
+        <li><a class="nav-link" href="/packages">Packages</a></li>
+        <li><a class="nav-link" href="/hotels">Hotels</a></li>
+        <li><a class="nav-link" href="/about">About</a></li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="attraction">Attraction</a>
-                    </li>
+        <li class="mt-3 text-white-50">Admin</li>
+        <li><a class="nav-link" href="/users">Users</a></li>
+        <li><a class="nav-link" href="/destinations">Manage Destination</a></li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="pauling">Pauling</a>
-                    </li>
+        <hr style="color:white;">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/packages">Packages</a>
-                    </li>
+        <li class="text-white-50">Account</li>
+        <li><a class="nav-link" href="/login">🔑 Sign In</a></li>
+        <li><a class="nav-link" href="/register">📝 Sign Up</a></li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/hotels">Hotels</a>
-                    </li>
+    </ul>
+</div>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
-                    </li>
-                    
+<!-- BUBBLE -->
+<div class="bubbles">
+    <span style="left:10%"></span>
+    <span style="left:30%"></span>
+    <span style="left:50%"></span>
+    <span style="left:70%"></span>
+    <span style="left:90%"></span>
+</div>
 
-                    <!-- DROPDOWN -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Admin
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/users">Users</a></li>
-                            <li><a class="dropdown-item" href="/destinations">Manage Destination</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
+<div class="overlay content">
 
     <!-- HERO -->
-    <div class="text-center text-white mt-4">
-        <h1 class="fw-bold">Explore Your Dream Destination</h1>
-        <p>Temukan destinasi terbaik untuk liburanmu ✨</p>
-    </div>
-
-    <!-- CONTENT -->
     <div class="container mt-4">
+
+        <div class="glass text-center p-5 mb-4">
+
+            <h1 class="fw-bold">🌴 Pauling Adventure</h1>
+            <p class="mt-2">Explore Indonesia's most beautiful destinations with us</p>
+
+            <a href="/destinations" class="btn btn-modern mt-3">
+                Explore Now
+            </a>
+
+        </div>
+
         @yield('content')
+
     </div>
 
     <!-- FOOTER -->
@@ -114,7 +209,12 @@
 
 </div>
 
-<!-- ✅ WAJIB: Bootstrap JS -->
+<script>
+function toggleSidebar(){
+    document.getElementById('sidebar').classList.toggle('active');
+}
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 @stack('scripts')

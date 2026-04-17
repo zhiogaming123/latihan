@@ -67,16 +67,16 @@ class Destinationseeder extends Seeder
             'working_hours'=>"06.30-17.30",
             'ticket_price'=>"50000",
         ]);
-        for ($i = 0; $i <= 5000; $i++){
-            Destination::create([
-            'name'=>fake ("id_ID")->name(),
-            'description'=>fake("id_ID")->sentence(),
-            'location'=>fake ("id_ID")->address(). ",Pekanbaru, Riau",
-            'working_days'=>"Everyday",
-            'working_hours'=>"8 am - 5pm",
-            'ticket_price'=>rand(1000, 5000),
-            ]);
-        }
+        // for ($i = 0; $i <= 5000; $i++){
+        //     Destination::create([
+        //     'name'=>fake ("id_ID")->name(),
+        //     'description'=>fake("id_ID")->sentence(),
+        //     'location'=>fake ("id_ID")->address(). ",Pekanbaru, Riau",
+        //     'working_days'=>"Everyday",
+        //     'working_hours'=>"8 am - 5pm",
+        //     'ticket_price'=>rand(1000, 5000),
+        //     ]);
+        // }
     }
 
 }

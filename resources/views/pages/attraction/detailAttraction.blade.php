@@ -35,7 +35,7 @@
 
                     </div>
 
-                    <a href="/destinations" class="btn btn-primary w-100 mt-4">
+                    <a href="/destinations" class="btn-modern w-100 mt-4">
                         ← Kembali ke List
                     </a>
 
